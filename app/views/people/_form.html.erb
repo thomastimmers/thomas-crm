@@ -1,0 +1,33 @@
+<%= form_for(@person) do |f| %>
+  <% if @person.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% @person.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    test<br />
+    <%=   select_tag "company_id", options_from_collection_for_select(Company.all, "id", "name") %><br />
+	<%=  radio_button_tag 'color', "green", true, :class => "color_input"%>groen<br />
+	<%=  radio_button_tag 'color', "red", true, :class => "color_input"%>rood<br />
+	<%= text_area_tag("test", content = "vul in die zooi" , options = {:size =>15}) %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
