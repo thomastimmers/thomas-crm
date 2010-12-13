@@ -20,10 +20,12 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    Bedrijf<br />
-	<select  id="people_company_id" name="person[company_id]">
-		<%= options_from_collection_for_select @companies, "id", "name", @person.company_id %>
-	</select>
+    test<br />
+    <%=   select_tag "company_id", options_from_collection_for_select(Company.all, "id", "name") %><br />
+	<%=  radio_button_tag 'color', "green", true, :class => "color_input"%>groen<br />
+	<%=  radio_button_tag 'color', "red", true, :class => "color_input"%>rood<br />
+	<%= text_area_tag("test", content = "vul in die zooi" , options = {:size =>15}) %>
+
   </div>
   <div class="actions">
     <%= f.submit %>

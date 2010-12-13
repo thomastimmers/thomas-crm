@@ -1,11 +1,8 @@
 class PeopleController < ApplicationController
   
   def get_person
-  
-    @person = Person.find(params[:id])
-    
-   
-  end
+     @person = Person.find(params[:id])
+   end
   
   
   # GET /people
@@ -33,6 +30,10 @@ class PeopleController < ApplicationController
   # GET /people/new
   # GET /people/new.xml
   def new
+    
+    # bedrijven ophalen voor in de dropdown
+    @companies = Company.all 
+    
     @person = Person.new
 
     respond_to do |format|
@@ -44,6 +45,10 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
    get_person
+   
+    # bedrijven ophalen voor in de dropdown
+    @companies = Company.all   
+   
   end
 
   # POST /people
@@ -66,7 +71,7 @@ class PeopleController < ApplicationController
   # PUT /people/1.xml
   def update
     get_person
-
+    
     respond_to do |format|
       if @person.update_attributes(params[:person])
         format.html { redirect_to(@person, :notice => 'Person was successfully updated.') }
